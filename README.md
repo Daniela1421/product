@@ -3,10 +3,6 @@
 Aplicación web fullstack construida con **Next.js** y **Node.js**, que permite **crear, leer, actualizar y eliminar productos** de una tienda.  
 Usa **ShadCN UI**, **Tailwind CSS** y está desplegada con **Vercel** (frontend) y **Render** (backend).
 
-## 🖼️ Vista previa
-
-![Demo Screenshot](https://product-seven-flax.vercel.app/)
-
 ## 🚀 Tecnologías
 
 - 💻 Frontend: [Next.js](w), [Tailwind CSS](w), [ShadCN UI](w), [React Hook Form](w), [Axios](w)
