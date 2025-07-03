@@ -50,6 +50,12 @@ npm run dev
 - 🔗 [Frontend en Vercel](https://product-seven-flax.vercel.app/)
 - 🔗 [Backend en Render](https://product-fzqz.onrender.com)
 
+## 🧪 Próximas mejoras
+
+- Ordenar productos del más reciente al más antiguo.
+- Agregar campo de categoría y filtro por categoría.
+- Paginación para manejar muchos productos.
+
 ## 👩‍💻 Autor
 
 **Daniela Ducuara** – [@Daniela1421](https://github.com/Daniela1421)
