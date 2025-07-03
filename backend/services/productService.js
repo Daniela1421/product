@@ -5,7 +5,7 @@ let products = [
     price: 89900,
     category: "Chaquetas",
     image: "https://picsum.photos/200?random=1",
-    description: "Chaqueta clásica de mezclilla azul con botones al frente"
+    description: "Chaqueta de cuero negra con cierre frontal y bolsillos laterales."
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ let products = [
     price: 120000,
     category: "Accesorios",
     image: "https://picsum.photos/200?random=2",
-    description: "Bolso negro de cuero elegante para uso diario"
+    description: "Bolso elegante de cuero sintético ideal para ocasiones formales."
   },
   {
     id: 3,
@@ -21,8 +21,32 @@ let products = [
     price: 35000,
     category: "Gorras",
     image: "https://picsum.photos/200?random=3",
-    description: "Gorra estilo urbano ajustable, ideal para el día a día"
-  }
+    description: "Gorra negra ajustable con diseño moderno y juvenil."
+  },
+  {
+    id: 4,
+    name: "Tenis deportivos",
+    price: 145000,
+    category: "Calzado",
+    image: "https://picsum.photos/200?random=4",
+    description: "Tenis cómodos y ligeros para correr o caminar a diario."
+  },
+  {
+    id: 5,
+    name: "Camiseta básica",
+    price: 29000,
+    category: "Ropa",
+    image: "https://picsum.photos/200?random=5",
+    description: "Camiseta blanca de algodón 100% con cuello redondo."
+  },
+  {
+    id: 6,
+    name: "Reloj digital",
+    price: 99000,
+    category: "Accesorios",
+    image: "https://picsum.photos/200?random=6",
+    description: "Reloj digital resistente al agua con correa de goma."
+  },
 ];
 
 export function getProducts() { return products; }
