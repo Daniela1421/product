@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { ProductForm } from "@/components/ProductForm";
 import { ProductCard } from "@/components/ProductCard";
 import { getAllProducts } from "@/services/productService";
+import { CreateProductDialog } from "@/components/CreateProductDialog";
+
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -25,7 +27,7 @@ export default function Home() {
     <main className="max-w-4xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6 text-center">Administración de Productos</h1>
 
-      <ProductForm onProductCreated={fetchProducts} />
+      <CreateProductDialog onProductCreated={fetchProducts} />
 
       <div className="grid gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
         {products.length === 0 ? (
