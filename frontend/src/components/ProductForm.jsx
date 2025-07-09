@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { createProduct, updateProduct } from "@/services/productService";
 
 export const ProductForm = ({ product = null, onSaved, onClose }) => {
@@ -18,11 +19,15 @@ export const ProductForm = ({ product = null, onSaved, onClose }) => {
       reset({
         name: product.name,
         price: product.price,
+        image: product.image || "",
+        description: product.description || "",
       });
     } else {
       reset({
         name: "",
         price: "",
+        image: "",
+        description: "",
       });
     }
   }, [product, reset]);
@@ -51,7 +56,7 @@ export const ProductForm = ({ product = null, onSaved, onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <Label htmlFor="name">Nombre</Label>
+        <Label htmlFor="name" className="mb-2 block">Nombre</Label>
         <Input
           id="name"
           {...register("name", {
@@ -68,19 +73,58 @@ export const ProductForm = ({ product = null, onSaved, onClose }) => {
       </div>
 
       <div>
-        <Label htmlFor="price">Precio</Label>
+        <Label htmlFor="price" className="mb-2 block">Precio</Label>
         <Input
           id="price"
           type="number"
-          step="1000"
+          step="1"
           {...register("price", {
             required: "El precio es obligatorio",
             valueAsNumber: true,
-            validate: (v) => v > 0 || "Debe ser mayor que 0",
+            validate: (v) => {
+              if (isNaN(v)) return "El precio debe ser un número";
+              if (v <= 0) return "Debe ser mayor que 0";
+              return true;
+            },
           })}
         />
         {errors.price && (
           <p className="text-red-500 text-sm">{errors.price.message}</p>
+        )}
+      </div>
+
+      <div>
+        <Label htmlFor="image" className="mb-2 block">Imagen (URL)</Label>
+        <Input
+          id="image"
+          {...register("image", {
+            required: "La URL de la imagen es obligatoria",
+            pattern: {
+              value: /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/,
+              message: "Debe ser una URL válida"
+            },
+          })}
+        />
+        {errors.image && (
+          <p className="text-red-500 text-sm">{errors.image.message}</p>
+        )}
+      </div>
+
+      <div>
+        <Label htmlFor="description" className="mb-2 block">Descripción</Label>
+        <Textarea
+          id="description"
+          rows={3}
+          {...register("description", {
+            required: "La descripción es obligatoria",
+            minLength: {
+              value: 10,
+              message: "Debe tener al menos 10 caracteres",
+            },
+          })}
+        />
+        {errors.description && (
+          <p className="text-red-500 text-sm">{errors.description.message}</p>
         )}
       </div>
 

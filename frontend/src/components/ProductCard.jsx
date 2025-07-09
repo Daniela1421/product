@@ -31,7 +31,7 @@ const formatCOP = (value) =>
     minimumFractionDigits: 0,
   }).format(value);
 
-export const ProductCard = ({ product, onProductDeleted, onProduct }) => {
+export const ProductCard = ({ product, onProductDeleted }) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const handleDelete = async () => {
@@ -44,48 +44,61 @@ export const ProductCard = ({ product, onProductDeleted, onProduct }) => {
   };
 
   return (
-    <Card className="w-full shadow-md transition hover:shadow-xl">
-      <CardContent className="pt-6 flex flex-col gap-2">
-        <div>
-          <h2 className="text-lg font-semibold">{product.name}</h2>
-          <p className="text-muted-foreground text-sm">{formatCOP(product.price)}</p>
-        </div>
+    <Card className="w-full shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl py-0">
+      <img
+        src={product.image || "https://via.placeholder.com/400x200?text=Producto"}
+        alt={product.name}
+        className="w-full h-48 object-cover rounded-t-xl"
+      />
 
-        <div className="flex gap-2 mt-4">
-          <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-            <DialogTrigger asChild>
-              <Button size="sm" variant="outline">Editar</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Editar producto</DialogTitle>
-              </DialogHeader>
-              <ProductForm
-                product={product}
-                onSaved={onProductDeleted}
-                onClose={() => setIsEditOpen(false)}
-              />
-            </DialogContent>
-          </Dialog>
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button size="sm" variant="destructive">Eliminar</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>¿Eliminar producto?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Esta acción no se puede deshacer.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                <AlertDialogAction onClick={handleDelete}>
-                  Sí, eliminar
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+      <CardContent className="p-5 flex flex-col justify-between h-full">
+        <div className="mb-3">
+            <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
+          <p className="text-gray-600 text-sm mt-2 line-clamp-2">
+            {product.description}
+          </p>
+        </div>
+        <div className="flex items-center justify-between mt-auto pt-4 border-t">
+          <p className="text-primary font-semibold text-base">
+            {formatCOP(product.price)}
+          </p>
+
+          <div className="flex gap-2">
+            <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+              <DialogTrigger asChild>
+                <Button size="sm" variant="outline">Editar</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Editar producto</DialogTitle>
+                </DialogHeader>
+                <ProductForm
+                  product={product}
+                  onSaved={onProductDeleted}
+                  onClose={() => setIsEditOpen(false)}
+                />
+              </DialogContent>
+            </Dialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button size="sm" variant="destructive">Eliminar</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>¿Eliminar producto?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Esta acción no se puede deshacer.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDelete}>
+                    Sí, eliminar
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </div>
       </CardContent>
     </Card>
